@@ -33,7 +33,7 @@ public abstract class Cliente  {
 	public void usarTiquetes(Vuelo vuelo) {
 		
 		for ( Tiquete ticket:tiquetesSinUsar ) {
-			if (vuelo.equals(ticket.getVuelo)) {
+			if (vuelo.equals(ticket.getVuelo())) {
 				tiquetesUsados.add(ticket);
 				tiquetesSinUsar.remove(ticket);
 			}
