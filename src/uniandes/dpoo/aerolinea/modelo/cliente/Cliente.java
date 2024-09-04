@@ -1,6 +1,6 @@
 package uniandes.dpoo.aerolinea.modelo.cliente;
 import java.util.ArrayList;
-
+import java.util.Collection;
 
 import uniandes.dpoo.aerolinea.modelo.Vuelo;
 import uniandes.dpoo.aerolinea.tiquetes.Tiquete;
@@ -10,6 +10,7 @@ public abstract class Cliente  {
 	
 	private java.util.List<Tiquete> tiquetesSinUsar;
 	private java.util.List<Tiquete> tiquetesUsados;
+	private Collection<Tiquete> tiquetes;
 	
 	
 	
@@ -31,7 +32,12 @@ public abstract class Cliente  {
 	
 	public void usarTiquetes(Vuelo vuelo) {
 		
-		tiquetesUsados.add(vuelo.getTiquetes());
+		for ( Tiquete ticket:tiquetesSinUsar ) {
+			if (vuelo.equals(ticket.getVuelo)) {
+				tiquetesUsados.add(ticket);
+				tiquetesSinUsar.remove(ticket);
+			}
+		}
 	}
 	
 	public int calcularValorTotalTiquetes() {
