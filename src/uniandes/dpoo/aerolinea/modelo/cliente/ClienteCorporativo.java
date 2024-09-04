@@ -1,6 +1,7 @@
 package uniandes.dpoo.aerolinea.modelo.cliente;
 
 import org.json.JSONObject;
+import java.util.UUID;
 
 /**
  * Esta clase se usa para representar a los clientes de la aerolínea que son empresas
@@ -9,10 +10,10 @@ public class ClienteCorporativo extends Cliente
 {
     // TODO completar
 	
-	private String coorporativo = "COORPORATIVO";
-	private int GRANDE = 1;
-	private int mediana = 2;
-	private int pequena = 3;
+	private static final String coorporativo = "COORPORATIVO";
+	private static final int GRANDE = 1;
+	private static final int MEDIANA = 2;
+	private static final int PEQUENA = 3;
 	private String nombreEmpresa;
 	private int tamanoEmpresa;
 	
@@ -55,13 +56,15 @@ public class ClienteCorporativo extends Cliente
 	@Override
 	public String getTipoCliente() {
 		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return convertirTamanoEnteroATexto(this.tamanoEmpresa);
 	}
 
 	@Override
 	public String getIdentificador() {
 		// TODO Auto-generated method stub
-		return null;
+		return nombreEmpresa + "_"  + UUID.randomUUID().toString();
 	}
 
 	public String getNombreEmpresa() {
@@ -70,6 +73,18 @@ public class ClienteCorporativo extends Cliente
 
 	public int getTamanoEmpresa() {
 		return tamanoEmpresa;
+	}
+	
+	private static String convertirTamanoEnteroATexto(int tamano) {
+		if (tamano == GRANDE) {
+			return "GRANDE";
+		} else if (tamano == MEDIANA) {
+			return "MEDIANA";
+		} else if (tamano == PEQUENA) {
+			return "PEQUEÑA";
+		} else {
+			return "DESCONOCIDO";
+		}
 	}
 	
 	

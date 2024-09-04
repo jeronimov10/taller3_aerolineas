@@ -5,7 +5,7 @@ import java.util.UUID;
 public class ClienteNatural extends Cliente {
 
 	
-	private String natural = "NATURAL";
+	private static final String natural = "NATURAL";
 	private String nombre;
 	
 	
@@ -26,7 +26,7 @@ public class ClienteNatural extends Cliente {
 		// TODO Auto-generated method stub
 		
 		
-		return nombre + UUID.randomUUID().toString();
+		return nombre + "_" + UUID.randomUUID().toString();
 	}
 	
 	
