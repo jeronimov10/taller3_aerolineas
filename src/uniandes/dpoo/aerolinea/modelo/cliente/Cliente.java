@@ -21,9 +21,9 @@ public abstract class Cliente  {
 		this.tiquetesUsados = new ArrayList<Tiquete>();
 		
 	}
-	public abstract java.lang.String getTipoCliente();
+	public abstract String getTipoCliente();
 	
-	public abstract java.lang.String getIdentificador();
+	public abstract String getIdentificador();
 	
 	public void agregarTiquete​(Tiquete tiquete) {
 		tiquetesSinUsar.add(tiquete);
