@@ -1,6 +1,7 @@
 package uniandes.dpoo.aerolinea.modelo.tarifas;
 import uniandes.dpoo.aerolinea.modelo.cliente.Cliente;
 import uniandes.dpoo.aerolinea.modelo.Vuelo;
+import uniandes.dpoo.aerolinea.modelo.Ruta;
 
 
 
@@ -26,7 +27,8 @@ public abstract class calculadoraTarifas {
 		return -1;
 	}
 	
-	protected int calcularDistanciaVuelo() {
+	protected int calcularDistanciaVuelo(Ruta ruta) {
+		ruta.getDuracion();
 		
 		return -1;
 	}

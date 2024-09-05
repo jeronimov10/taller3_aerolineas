@@ -31,6 +31,7 @@ public class Ruta
 	}
 
     public Vuelo getDuracion() {
+    	
 		return duracion;
 	}
 
