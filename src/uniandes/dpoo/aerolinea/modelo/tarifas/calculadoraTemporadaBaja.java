@@ -26,8 +26,26 @@ public class calculadoraTemporadaBaja extends calculadoraTarifas{
 	
 	@Override
 	public double calcularPorcentajeDescuento(Cliente cliente) {
+		
+		if (cliente instanceof ClienteCorporativo) {
+	        ClienteCorporativo corporativo = (ClienteCorporativo) cliente;
+	        int tamanoEmpresa = corporativo.getTamanoEmpresa();
+	        
+	        
+	        
+	        if (tamanoEmpresa == ClienteCorporativo.GRANDE) {
+	            return 0.2;
 
-	    return 0.0;
+	        } else if (tamanoEmpresa == ClienteCorporativo.MEDIANA) {
+	            return 0.1;  // 10% de descuento
+	        } else if (tamanoEmpresa == ClienteCorporativo.PEQUENA) {
+	            return 0.02;  // 2% de descuento
+	        } else {
+	            return 0.0; 
+	        }
+		}
+		
+		 return 0.0;
 	}
 
 

@@ -11,9 +11,9 @@ public class ClienteCorporativo extends Cliente
     // TODO completar
 	
 	private static final String coorporativo = "COORPORATIVO";
-	private static final int GRANDE = 1;
-	private static final int MEDIANA = 2;
-	private static final int PEQUENA = 3;
+	public static final int GRANDE = 1;
+	public static final int MEDIANA = 2;
+	public static final int PEQUENA = 3;
 	private String nombreEmpresa;
 	private int tamanoEmpresa;
 	private String identificador;
