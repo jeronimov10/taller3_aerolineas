@@ -35,11 +35,10 @@ public class calculadoraTemporadaBaja extends calculadoraTarifas{
 	        
 	        if (tamanoEmpresa == ClienteCorporativo.GRANDE) {
 	            return 0.2;
-
 	        } else if (tamanoEmpresa == ClienteCorporativo.MEDIANA) {
-	            return 0.1;  // 10% de descuento
+	            return 0.1; 
 	        } else if (tamanoEmpresa == ClienteCorporativo.PEQUENA) {
-	            return 0.02;  // 2% de descuento
+	            return 0.02;  
 	        } else {
 	            return 0.0; 
 	        }
