@@ -85,12 +85,12 @@ public class PersistenciaTiquetesJson implements IPersistenciaTiquetes
         {
             JSONObject cliente = jClientes.getJSONObject( i );
             String tipoCliente = cliente.getString( TIPO_CLIENTE );
-            Cliente nuevoCliente = null;
+            Cliente nuevoCliente;
             // En las siguientes líneas se utilizan dos estrategias para implementar la carga de objetos: en la primera estrategia, la carga de los objetos
             // lo hace alguien externo al objeto que se carga; en la segunda estrategia, los objetos saben cargarse.
             // En general es una mala idea mezclar las dos estrategias: acá lo hacemos para ilustrar las dos posibilidades y mostrar las ventajas y desventajas de cada una.
             // Lo que sí es recomendable es seleccionar una estrategia y usarla consistentemente para cargar y salvar.
-            if( ClienteNatural.NATURAL.equals( tipoCliente ) )
+            if( ClienteNatural.natural.equals( tipoCliente ) )
             {
                 // 1. En esta estrategia, en ESTA clase se realiza todo lo que tiene que ver con cargar objetos de la clase ClienteNatural
                 // Al revisar el código de la clase ClienteNatural, no hay nada que tenga que ver con cargar o salvar.
@@ -127,7 +127,7 @@ public class PersistenciaTiquetesJson implements IPersistenciaTiquetes
             // Acá también se utilizaron dos estrategias para salvar los clientes.
             // Para los clientes naturales, esta clase extrae la información de los objetos y la organiza para que luego sea salvada.
             // Para los clientes corporativos, la clase ClienteCorporativo hace todo lo que está en sus manos para persistir un cliente
-            if( ClienteNatural.NATURAL.equals( cliente.getTipoCliente( ) ) )
+            if( ClienteNatural.natural.equals( cliente.getTipoCliente( ) ) )
             {
                 JSONObject jCliente = new JSONObject( );
                 jCliente.put( NOMBRE_CLIENTE, cliente.getIdentificador( ) );
@@ -184,7 +184,7 @@ public class PersistenciaTiquetesJson implements IPersistenciaTiquetes
                 throw new InformacionInconsistenteTiqueteException( "cliente", identificadorCliente );
 
             // Construir y registrar el tiquete
-            Tiquete nuevoTiquete = new Tiquete( codigoTiquete, elVuelo, elCliente, tarifa );
+            Tiquete nuevoTiquete = new Tiquete(codigoTiquete, elVuelo, elCliente, tarifa);
             if( tiqueteUsado )
                 nuevoTiquete.marcarComoUsado( );
             GeneradorTiquetes.registrarTiquete( nuevoTiquete );
@@ -209,7 +209,7 @@ public class PersistenciaTiquetesJson implements IPersistenciaTiquetes
             jTiquete.put( FECHA, tiquete.getVuelo( ).getFecha( ) );
             jTiquete.put( TARIFA, tiquete.getTarifa( ) );
             jTiquete.put( USADO, tiquete.esUsado( ) );
-            jTiquete.put( CLIENTE, tiquete.getCliente( ).getIdentificador( ) );
+            jTiquete.put(CLIENTE, tiquete.getClienteComprador().getIdentificador());
 
             jTiquetes.put( jTiquete );
         }

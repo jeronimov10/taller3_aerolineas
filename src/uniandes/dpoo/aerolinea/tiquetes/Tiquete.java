@@ -11,7 +11,7 @@ public class Tiquete {
 	private Cliente clienteComprador;
 	
 	
-	public Tiquete(String codigo, Vuelo vuelo, int tarifa, boolean usado, Cliente clienteComprador) {
+	public Tiquete(String codigo, Vuelo vuelo, Cliente clienteComprador, int tarifa) {
 		// TODO Auto-generated constructor stub
 		
 		this.codigo = codigo;
@@ -19,6 +19,7 @@ public class Tiquete {
 		this.usado = false;
 		this.vuelo = vuelo;
 		this.clienteComprador = clienteComprador;
+		clienteComprador.agregarTiquete​(this);
 		
 		
 		

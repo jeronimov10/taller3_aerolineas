@@ -5,7 +5,7 @@ import java.util.UUID;
 public class ClienteNatural extends Cliente {
 
 	
-	private static final String natural = "NATURAL";
+	public static final String natural = "NATURAL";
 	private String nombre;
 	private String identificador;
 	
