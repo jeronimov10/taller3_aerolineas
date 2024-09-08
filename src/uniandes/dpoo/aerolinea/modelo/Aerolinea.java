@@ -216,6 +216,8 @@ public class Aerolinea
     public void cargarAerolinea( String archivo, String tipoArchivo ) throws TipoInvalidoException, IOException, InformacionInconsistenteException
     {
         // TODO implementar
+    	IPersistenciaAerolinea persistencia = CentralPersistencia.getPersistenciaAerolinea(tipoArchivo);
+        persistencia.cargarAerolinea(archivo, this);
     }
 
     /**
@@ -228,6 +230,8 @@ public class Aerolinea
     public void salvarAerolinea( String archivo, String tipoArchivo ) throws TipoInvalidoException, IOException
     {
         // TODO implementar
+    	IPersistenciaAerolinea persistencia = CentralPersistencia.getPersistenciaAerolinea(tipoArchivo);
+    	persistencia.salvarAerolinea(archivo, this);
     }
 
     /**
@@ -278,6 +282,11 @@ public class Aerolinea
     public void programarVuelo( String fecha, String codigoRuta, String nombreAvion ) throws Exception
     {
         // TODO Implementar el método
+    	Ruta ruta = getRuta(codigoRuta);
+    	Avion avion = null;
+    	
+    	Vuelo nuevoVuelo = new Vuelo(fecha, ruta, avion);
+        vuelos.add(nuevoVuelo);
     }
 
     /**
@@ -298,7 +307,23 @@ public class Aerolinea
     public int venderTiquetes( String identificadorCliente, String fecha, String codigoRuta, int cantidad ) throws VueloSobrevendidoException, Exception
     {
         // TODO Implementar el método
-        return -1;
+    	
+    	Cliente cliente = getCliente(identificadorCliente);
+    	
+    	Vuelo vuelo = getVuelo(codigoRuta, fecha);
+    	
+    	int capacidadDsiponible = vuelo.getAvion().getCapacidad() - vuelo.getTiquetes().size();
+    	
+    	
+    	int total = 0;
+        for (int i = 0; i < cantidad; i++) {
+            int tarifa = tarifas.calcularTarifa(vuelo, cliente);
+            Tiquete tiquete = new Tiquete(GeneradorTiquetes.generarCodigoTiquete(), vuelo, cliente, tarifa);
+            vuelo.getTiquetes().add(tiquete);
+            total += tarifa;
+        }
+
+        return total;
     }
 
     /**
