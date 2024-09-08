@@ -16,6 +16,7 @@ public class ClienteCorporativo extends Cliente
 	private static final int PEQUENA = 3;
 	private String nombreEmpresa;
 	private int tamanoEmpresa;
+	private String identificador;
 	
     
 	public ClienteCorporativo(String nombreEmpresa, int tamano) {
@@ -23,6 +24,7 @@ public class ClienteCorporativo extends Cliente
 		
 		this.nombreEmpresa = nombreEmpresa;
 		this.tamanoEmpresa = tamano;
+		this.identificador = nombreEmpresa + "_" + UUID.randomUUID().toString(); 
 		
 	}
 
@@ -64,7 +66,7 @@ public class ClienteCorporativo extends Cliente
 	@Override
 	public String getIdentificador() {
 		// TODO Auto-generated method stub
-		return nombreEmpresa + "_"  + UUID.randomUUID().toString();
+		return identificador;
 	}
 
 	public String getNombreEmpresa() {

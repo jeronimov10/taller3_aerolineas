@@ -14,9 +14,9 @@ public class Ruta
 	private String codigoRuta;
 	private Aeropuerto origen;
 	private Aeropuerto destino;
-	private Vuelo duracion;
+	private int duracion;
 	
-	public Ruta(Aeropuerto origen, Aeropuerto destino, String horaSalida, String horaLlegada, String codigoRuta, Vuelo duracion) {
+	public Ruta(Aeropuerto origen, Aeropuerto destino, String horaSalida, String horaLlegada, String codigoRuta, int duracion) {
 		// TODO Auto-generated constructor stub
 		
 		this.codigoRuta = codigoRuta;
@@ -30,7 +30,7 @@ public class Ruta
 		
 	}
 
-    public Vuelo getDuracion() {
+    public int getDuracion() {
     	
 		return duracion;
 	}

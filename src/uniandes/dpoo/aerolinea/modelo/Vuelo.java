@@ -13,18 +13,18 @@ public class Vuelo{
 	private String fecha;
 	private Ruta ruta;
 	private Avion avion;
-	private int duracion;
 	
 	
 	
 	
-	public Vuelo(String fecha, Ruta ruta, Avion avion, int duracion) {
+	
+	public Vuelo(String fecha, Ruta ruta, Avion avion) {
 		// TODO Auto-generated constructor stub
 		
 		this.fecha = fecha;
 		this.ruta = ruta;
 		this.avion = avion;
-		this.duracion = duracion;
+		
 		
 		
 	}
@@ -32,7 +32,7 @@ public class Vuelo{
 
 
 	public int getDuracion() {
-		return duracion;
+		return ruta.getDuracion();
 	}
 
 

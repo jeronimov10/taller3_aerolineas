@@ -7,35 +7,35 @@ import uniandes.dpoo.aerolinea.modelo.Ruta;
 
 public abstract class calculadoraTarifas {
 	
+	
+	
 	private static final double IMPUESTO = 0.28;
 	
 	
-	private int calcularTarifa() {
+	private int calcularTarifa(Vuelo vuelo, Cliente cliente) {
+		int costoBase = calcularCostoBase(vuelo, cliente);
+		double porcentajeDescuento = calcularPorcentajeDescuento(cliente);
+		double descuento = costoBase * porcentajeDescuento;
+		double costoConDescuento = costoBase - descuento;
+		double impuestos = costoConDescuento * IMPUESTO;
+		double tarifaTotal = costoConDescuento + impuestos;
+	
 		
-		
-		return -1;
+		return (int) tarifaTotal;
 	}
 	
-	protected int calcularCostoBase() {
-		
-		
-		return -1;
-	}
+	protected abstract int calcularCostoBase(Vuelo vuelo, Cliente cliente);
 	
-	protected int calcularPorcentajeDescuento() {
-		
-		return -1;
-	}
+	protected abstract double calcularPorcentajeDescuento(Cliente cliente);
 	
 	protected int calcularDistanciaVuelo(Ruta ruta) {
-		ruta.getDuracion();
-		
-		return -1;
+		int duracionEnMinutos = ruta.getDuracion();
+		double duracionEnHoras = duracionEnMinutos / 60.0;
+		return (int) (duracionEnHoras * 500);
 	}
 	
-	protected int calcularValorImpuestos() {
-		
-		return -1;
+	protected int calcularValorImpuestos(int costoBase) {
+	    return (int) (costoBase * IMPUESTO);
 	}
 
 }

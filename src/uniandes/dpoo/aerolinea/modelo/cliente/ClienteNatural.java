@@ -7,11 +7,14 @@ public class ClienteNatural extends Cliente {
 	
 	private static final String natural = "NATURAL";
 	private String nombre;
+	private String identificador;
+	
 	
 	
 	public ClienteNatural(String nombre) {
 		// TODO Auto-generated constructor stub
 		this.nombre = nombre;
+		this.identificador = nombre + "_" + UUID.randomUUID().toString();
 	}
 	
 	
@@ -26,7 +29,7 @@ public class ClienteNatural extends Cliente {
 		// TODO Auto-generated method stub
 		
 		
-		return nombre + "_" + UUID.randomUUID().toString();
+		return identificador;
 	}
 	
 	
