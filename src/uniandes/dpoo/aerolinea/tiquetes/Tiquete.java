@@ -16,7 +16,7 @@ public class Tiquete {
 		
 		this.codigo = codigo;
 		this.tarifa = tarifa;
-		this.usado = usado;
+		this.usado = false;
 		this.vuelo = vuelo;
 		this.clienteComprador = clienteComprador;
 		
@@ -48,14 +48,9 @@ public class Tiquete {
 		usado = true;
 	}
 	public boolean esUsado() {
-		
-		if(usado) {
-			return true;
-				
-	} else {
-		return false;
-		}
-	
+		return usado;
 	}
+		
+
 
 }
