@@ -12,7 +12,7 @@ public abstract class calculadoraTarifas {
 	private static final double IMPUESTO = 0.28;
 	
 	
-	private int calcularTarifa(Vuelo vuelo, Cliente cliente) {
+	public int calcularTarifa(Vuelo vuelo, Cliente cliente) {
 		int costoBase = calcularCostoBase(vuelo, cliente);
 		double porcentajeDescuento = calcularPorcentajeDescuento(cliente);
 		double descuento = costoBase * porcentajeDescuento;

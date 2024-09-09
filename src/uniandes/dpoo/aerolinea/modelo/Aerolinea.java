@@ -17,6 +17,10 @@ import uniandes.dpoo.aerolinea.persistencia.IPersistenciaAerolinea;
 import uniandes.dpoo.aerolinea.persistencia.IPersistenciaTiquetes;
 import uniandes.dpoo.aerolinea.persistencia.TipoInvalidoException;
 import uniandes.dpoo.aerolinea.tiquetes.Tiquete;
+import uniandes.dpoo.aerolinea.modelo.tarifas.calculadoraTarifas;
+import uniandes.dpoo.aerolinea.modelo.tarifas.calculadoraTemporadaAlta;
+import uniandes.dpoo.aerolinea.modelo.tarifas.calculadoraTemporadaBaja;
+import uniandes.dpoo.aerolinea.tiquetes.GeneradorTiquetes;
 
 /**
  * En esta clase se organizan todos los aspectos relacionados con una Aerolínea.
@@ -311,15 +315,21 @@ public class Aerolinea
     	Cliente cliente = getCliente(identificadorCliente);
     	
     	Vuelo vuelo = getVuelo(codigoRuta, fecha);
-    	
-    	int capacidadDsiponible = vuelo.getAvion().getCapacidad() - vuelo.getTiquetes().size();
-    	
-    	
-    	int total = 0;
+    		
+        calculadoraTarifas calculadora;
+        int mes = Integer.parseInt(fecha.split("-")[1]); 
+        if ((mes >= 6 && mes <= 8) || mes == 12) {
+            calculadora = new calculadoraTemporadaAlta();
+        } else {
+            calculadora = new calculadoraTemporadaBaja();
+        }
+
+        int total = 0;
         for (int i = 0; i < cantidad; i++) {
-            int tarifa = tarifas.calcularTarifa(vuelo, cliente);
-            Tiquete tiquete = new Tiquete(GeneradorTiquetes.generarCodigoTiquete(), vuelo, cliente, tarifa);
-            vuelo.getTiquetes().add(tiquete);
+            int tarifa = calculadora.calcularTarifa(vuelo, cliente);
+            Tiquete tiquete = GeneradorTiquetes.generarTiquete(vuelo, cliente, tarifa);
+            vuelo.getTiquetes().add(tiquete);  
+            GeneradorTiquetes.registrarTiquete(tiquete);  
             total += tarifa;
         }
 
@@ -334,6 +344,13 @@ public class Aerolinea
     public void registrarVueloRealizado( String fecha, String codigoRuta )
     {
         // TODO Implementar el método
+    	
+    	 Vuelo vuelo = getVuelo(codigoRuta, fecha);
+    	    if (vuelo != null) {
+    	        for (Tiquete tiquete : vuelo.getTiquetes()) {
+    	            tiquete.marcarComoUsado();
+    	        }
+    	    }
     }
 
     /**
@@ -344,7 +361,16 @@ public class Aerolinea
     public String consultarSaldoPendienteCliente( String identificadorCliente )
     {
         // TODO Implementar el método
-        return "";
+    	
+    	Cliente cliente = getCliente(identificadorCliente);
+    	
+    	int saldoPendiente = 0;
+        for (Tiquete tiquete : cliente.getTiquetesSinUsar()) {
+            saldoPendiente += tiquete.getTarifa();
+        }
+
+        return "Saldo pendiente para el cliente " + identificadorCliente + ": " + saldoPendiente;
     }
+    
 
 }
