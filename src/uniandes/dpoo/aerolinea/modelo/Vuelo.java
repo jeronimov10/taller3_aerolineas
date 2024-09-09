@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import uniandes.dpoo.aerolinea.tiquetes.Tiquete;
 import uniandes.dpoo.aerolinea.modelo.cliente.Cliente;
-import uniandes.dpoo.aerolinea.tiquetes.CalculadoraTarifas;
+import uniandes.dpoo.aerolinea.modelo.tarifas.calculadoraTarifas;
 
 
 public class Vuelo{
@@ -54,12 +54,12 @@ public class Vuelo{
 	}
 	
     public Collection<Tiquete> getTiquetes() {
-        // Implementar la lógica para obtener la colección de tiquetes
+        
         return new ArrayList<>();
     }
     
-    public int venderTiquetes(Cliente cliente, CalculadoraTarifas calculadora, int cantidad) {
-        // Implementar la lógica para vender tiquetes
+    public int venderTiquetes(Cliente cliente, calculadoraTarifas calculadora, int cantidad) {
+        
         return 0;
     }
     
